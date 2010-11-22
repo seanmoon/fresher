@@ -16,3 +16,7 @@
 5. ruby fsevent-refresh.rb /path/to/watchdir
 6. Open your page in your favorite browser
 7. Make alterations to files in the included path
+
+# Credit
+
+fsevent_watch.c comes from [svoop's autotest-fsevent](https://github.com/svoop/autotest-fsevent)
