@@ -2,9 +2,12 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/jsonp'
 
-class FSEventRefresh 
-  attr_reader :changed
+unless ARGV[0]
+  puts "Provide a path to watch: ruby fsevent-refresh.rb /Users/you/Sites"
+  exit 1
+end
 
+class FSEventRefresh
   def initialize
     @changed = false 
   end
@@ -19,7 +22,7 @@ class FSEventRefresh
   end
 
   def watch
-    `./bin/fsevent_watch /Users/seanm/Sites`
+    `./bin/fsevent_watch #{ARGV[0]}`
     @changed = true
     puts "Change detected"
     self.watch
