@@ -3,13 +3,13 @@ require 'sinatra'
 require 'sinatra/jsonp'
 
 unless ARGV[0]
-  puts "Provide a path to watch: ruby fsevent-refresh.rb /Users/you/Sites"
+  puts "Provide a path to watch: ruby fresher.rb /Users/you/Sites"
   exit 1
 end
 
 class FSEventRefresh
   def initialize
-    @changed = false 
+    @changed = false
   end
 
   def changed?
