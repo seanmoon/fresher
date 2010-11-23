@@ -5,7 +5,7 @@ $(function() {
       if (data[0].match(/true/)) {
         window.location.reload(true);  
       }
-      setTimeout(function() { checkForChanges(); }, 3000);
+      setTimeout(function() { checkForChanges(); }, 500);
     });
   }
   checkForChanges();

@@ -22,7 +22,7 @@ int main (int argc, const char * argv[]) {
   CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void **)&pathToWatch, 1, NULL);
   void *callbackInfo = NULL;
   FSEventStreamRef stream;
-  CFAbsoluteTime latency = 1.0;
+  CFAbsoluteTime latency = 0.5;
   stream = FSEventStreamCreate(
                kCFAllocatorDefault,
                callback,
