@@ -1,6 +1,6 @@
 # Requirements
 
-- Mac OS X 10.5+
+- Mac OS X 10.5+ with developer tools installed
 
 # External dependencies
  
@@ -20,3 +20,4 @@
 # Credit
 
 fsevent_watch.c comes from [svoop's autotest-fsevent](https://github.com/svoop/autotest-fsevent)
+
