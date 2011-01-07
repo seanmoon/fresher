@@ -1,9 +1,6 @@
-require 'rubygems'
-require 'sinatra'
-require 'sinatra/jsonp'
-
 unless ARGV[0]
   puts "Provide a path to watch: ruby fresher.rb /Users/you/Sites"
+  puts "  also edit this script to run the desired command"
   exit 1
 end
 
@@ -21,20 +18,32 @@ class FSEventRefresh
     end
   end
 
-  def watch
-    `./bin/fsevent_watch #{ARGV[0]}`
+  def watch(dir)
+    `./bin/fsevent_watch #{dir}`
     @changed = true
-    puts "Change detected"
-    self.watch
+    self.watch(dir)
   end
 end
 
 f = FSEventRefresh.new
 Thread.new do
-  f.watch
+  f.watch(ARGV[0])
 end
 
-get '/status' do
-  data = ["#{f.changed?}"];
-  JSONP data
+f2 = FSEventRefresh.new
+if ARGV[1]
+  Thread.new do
+    f2.watch(ARGV[1])
+  end
+end
+
+loop do
+  if f.changed? || f2.changed?
+    IO.popen("clear; echo YOUR COMMAND HERE") do |io|
+      io.each_line do |line|
+        puts line
+      end
+    end
+  end
+  Kernel.sleep 0.1
 end
